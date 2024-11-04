@@ -1,0 +1,62 @@
+import java.util.Scanner;
+
+class QueueSystem {
+    private int currentQueueNumber = 1;
+
+    public int getCurrentQueueNumber() {
+        return currentQueueNumber;
+    }
+
+    public void incrementQueueNumber() {
+        currentQueueNumber++;
+    }
+
+    public void resetQueueNumber(int newNumber) {
+        if (newNumber > 0) {
+            currentQueueNumber = newNumber;
+        } else {
+            System.out.println("Invalid queue number. It must be greater than 0.");
+        }
+    }
+}
+
+public class PagIbigQueueSystem {
+    public static void main(String[] args) {
+        QueueSystem queueSystem = new QueueSystem();
+        Scanner scanner = new Scanner(System.in);
+        int choice;
+
+        do {
+            System.out.println("\n=== Pag-ibig Queuing System ===");
+            System.out.println("1. Get Next Queue Number");
+            System.out.println("2. Reset Queue Number");
+            System.out.println("3. Display Current Queue Number");
+            System.out.println("0. Exit");
+            System.out.print("Enter your choice: ");
+            choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    System.out.println("Next Queue Number: " + queueSystem.getCurrentQueueNumber());
+                    queueSystem.incrementQueueNumber();
+                    break;
+                case 2:
+                    System.out.print("Enter new queue number to reset: ");
+                    int newNumber = scanner.nextInt();
+                    queueSystem.resetQueueNumber(newNumber);
+                    System.out.println("Queue number has been reset.");
+                    break;
+                case 3:
+                    System.out.println("Current Queue Number: " + queueSystem.getCurrentQueueNumber());
+                    break;
+                case 0:
+                    System.out.println("Exiting the system. Thank you!");
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        } while (choice != 0);
+
+        scanner.close();
+    }
+}
